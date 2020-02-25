@@ -29,6 +29,7 @@ export const ProgressBarMixin = {
     }
   },
   mounted () {
+    console.log('tititit')
     if (this.options !== null && this.options !== undefined) {
       this.mergeDefaultOptionsWithProp(this.options)
     }
@@ -190,6 +191,7 @@ export const ProgressBarMixin = {
   },
   methods: {
     mergeDefaultOptionsWithProp: function (options) {
+      console.log(options)
       var result = this.defaultOptions
       for (var option in options) {
         if (options[option] !== null && typeof (options[option]) === 'object') {
@@ -246,10 +248,14 @@ export const ProgressBarMixin = {
     value: function (val) {
       this.updateValue(val)
     },
-    options: function (val) {
-      if (val !== null && val !== undefined) {
-        this.mergeDefaultOptionsWithProp(val)
-      }
+    options: {
+      handler: function (val){
+        console.log('---------->' + val)
+        if (val !== null && val !== undefined) {
+          this.mergeDefaultOptionsWithProp(val)
+        }
+      },
+      deep: true
     }
   }
 }
